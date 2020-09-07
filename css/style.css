@@ -31,8 +31,17 @@ body {
   font-family: 'Crimson Pro', serif;
   font-weight: 300;
   display: grid;
-  grid-template-columns: minmax(2rem,1fr) minmax(auto, var(--main-column-width)) minmax(2rem,1fr);
+  grid-template-columns: minmax(1fr,300px) minmax(2fr, var(--main-column-width));
+  grid-template-areas: "nav main";
 }
+
+nav { grid-area: nav; }
+
+main {
+  grid-area: main;
+  max-width: var(--main-column-width);
+}
+
 
 main section, figure {
   padding-top: var(--text-section-padding);
@@ -159,19 +168,17 @@ footer {
 
 /* display/hide sections */
 section {
- display: none;
- margin-bottom: calc(var(--text-margin)*2);
+ /* display: none; */
+ padding-bottom: calc(var(--text-margin)*2);
+
 }
 
 section:target {
  display: block;
 }
 
-/* sidenav based off code found here: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidenav_fixed2 */
 
-.sidenav {
-  display: none;
-}
+
 
 /* pagination - left and right display under 800px and numbers over 800px*/
 
@@ -238,17 +245,22 @@ section:target {
 }
 
 /* after 1500px, display the sidenav which is a fixed table of contents to use as navigation as well as pagination */
- @media (min-width: 1500px) {
+ @media (min-width: 400px) {
+
+/* sidenav based off code found here: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidenav_fixed2 */
   .sidenav {
-    width: auto;
-    position: fixed;
+    /* width: auto; */
+    /* position: fixed;  */
     z-index: 1;
-    top: 5rem;
-    right: 5rem;
     overflow-x: hidden;
-    padding: 8px 0;
-    display: grid;
-    text-align: right;
+    display: grid; 
+    min-width: 300px;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 4rem;
+    left: 2rem;
   }
 
   .sidenav a {
